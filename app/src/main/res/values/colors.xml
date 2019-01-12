@@ -5,4 +5,17 @@
     <color name="colorAccent">#26C6DA</color>
 
     <color name="colorCardView">#455A64</color>
+
+    <color name="cyan_900">#006064</color>
+    <color name="green_700">#388E3C</color>
+    <color name="indigo_900">#1A237E</color>
+    <color name="red_800">#C62828</color>
+    <color name="pink_800">#AD1457</color>
+    <color name="purple_800">#6A1B9A</color>
+    <color name="purple_a200">#E040FB</color>
+    <color name="orange_900">#E65100</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_900">#212121</color>
+    <color name="brown_800">#4E342E</color>
+
 </resources>

@@ -3,6 +3,7 @@ package com.wsinger.iamhappy.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import com.wsinger.iamhappy.R;
 
 import org.w3c.dom.Text;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -33,6 +37,9 @@ public class QuoteFragment extends Fragment {
 
        TextView textViewQuote = (TextView) quoteView.findViewById(R.id.textview_quote);
        TextView textViewAuthor = quoteView.findViewById(R.id.textview_author);
+       CardView cardView = quoteView.findViewById(R.id.card_view);
+
+       cardView.setCardBackgroundColor(getResources().getColor(pickColor()));
 
         //aqui obtengo los datos del bundle (parametros entre fragmentos)
         String quote = getArguments().getString("quote");
@@ -55,4 +62,12 @@ public class QuoteFragment extends Fragment {
         return fragment;
     }
 
+    public int pickColor(){
+        int c[] = new int[]  {R.color.cyan_900,R.color.green_700,R.color.indigo_900, R.color.red_800,
+                R.color.pink_800 ,R.color.purple_800, R.color.purple_a200,R.color.orange_900,
+                R.color.gray_700,R.color.gray_900,R.color.brown_800};
+
+        int r = ThreadLocalRandom.current().nextInt(c.length);
+        return c[r];
+    }
 }
