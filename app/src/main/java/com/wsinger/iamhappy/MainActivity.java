@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT,fragment.getArguments().getString("author"));
-        intent.putExtra(Intent.EXTRA_TEXT, fragment.getArguments().getString("quote"));
+        intent.putExtra(Intent.EXTRA_TEXT, fragment.getArguments().getString("quote")+" - "+fragment.getArguments().getString("author"));
         startActivity(Intent.createChooser(intent, "Choose sharing method"));
 
         //Toast.makeText(getApplicationContext(),"Compartir: "+fragment.getArguments().getString("quote"),Toast.LENGTH_SHORT).show();
