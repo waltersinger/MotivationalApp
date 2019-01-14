@@ -3,10 +3,6 @@ package com.wsinger.iamhappy.data;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.wsinger.iamhappy.MainActivity;
 
 import java.util.List;
 
@@ -21,7 +17,6 @@ public class QuoteVpagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        //Log.d("AdapterVP", "getItem: "+fragments.get(position).toString());
         return this.fragments.get(position);
     }
 

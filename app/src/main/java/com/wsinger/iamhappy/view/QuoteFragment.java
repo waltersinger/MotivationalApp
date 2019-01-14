@@ -22,7 +22,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class QuoteFragment extends Fragment {
 
-
     public QuoteFragment() {
         // Required empty public constructor
     }
@@ -58,7 +57,8 @@ public class QuoteFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("quote", quote);
         bundle.putString("author",author);
-        fragment.setArguments(bundle); // pasa el bundle con los datos al fragmento
+        fragment.setArguments(bundle); // pasa el bundle con los datos al fragmento, por cada fragmento creado, se tiene un bundle.
+                                        // Es decir, si se han creado 10 fragments, se tendra 10 bundle asociados a cada fragment correspondiente, esto me va a permitir obtener datos.
         return fragment;
     }
 
@@ -70,4 +70,5 @@ public class QuoteFragment extends Fragment {
         int r = ThreadLocalRandom.current().nextInt(c.length);
         return c[r];
     }
+
 }

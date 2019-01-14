@@ -1,11 +1,17 @@
 package com.wsinger.iamhappy;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.ShareActionProvider;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.wsinger.iamhappy.data.QuoteData;
 import com.wsinger.iamhappy.data.QuoteListAsyncResponse;
@@ -19,6 +25,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     QuoteVpagerAdapter adapterViewPager;
+    ViewPager viewPager;
+    ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
         //3) Asigno el adapter al viewpager
 
         adapterViewPager = new QuoteVpagerAdapter(getSupportFragmentManager(), getFragments());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
 
         viewPager.setAdapter(adapterViewPager);
+
+
+
     }
 
     private List<Fragment> getFragments(){
@@ -61,4 +72,42 @@ public class MainActivity extends AppCompatActivity {
         }*/
         return f;
     }
+
+    public void onClickSharedButton(View v){
+
+        QuoteFragment fragment = (QuoteFragment) adapterViewPager.getItem( viewPager.getCurrentItem());
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT,fragment.getArguments().getString("author"));
+        intent.putExtra(Intent.EXTRA_TEXT, fragment.getArguments().getString("quote"));
+        startActivity(Intent.createChooser(intent, "Choose sharing method"));
+
+        //Toast.makeText(getApplicationContext(),"Compartir: "+fragment.getArguments().getString("quote"),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share_action_menu,menu);
+        return true; //super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+    /*    switch (item.getItemId()){
+            case R.id.sharebutton:
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBodyText = "Check it out. Your message goes here";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+                startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+        */
+        return super.onOptionsItemSelected(item);
+    }
+
 }

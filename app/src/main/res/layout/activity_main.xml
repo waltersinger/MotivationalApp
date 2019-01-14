@@ -20,8 +20,9 @@
         android:layout_alignParentBottom="true"
         android:textSize="18sp"
         android:text="Compartir"
+        android:onClick="onClickSharedButton"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
-   
+
 
 </RelativeLayout>
